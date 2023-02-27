@@ -15,7 +15,7 @@ const ServicesByInstructor = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     ServerService.courseBYInstructor()
-      // axios.get("http://localhost:5000/coursebyinstructor")
+      // axios.get("https://pathpradarshak.netlify.app/coursebyinstructor")
       .then((result) => setData(result.data))
       .catch((err) => {
         throw err;

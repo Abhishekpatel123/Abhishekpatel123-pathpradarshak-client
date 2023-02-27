@@ -34,7 +34,7 @@ export default class ShowCategory extends Component {
   delete(id) {
     console.log(id);
     axios
-      .delete('http://localhost:5000/category?id=' + id)
+      .delete('https://pathpradarshak.netlify.app/category?id=' + id)
       .then((result) => {
         // this.forceUpdate()
         // this.props.history.push("/showcategory/")

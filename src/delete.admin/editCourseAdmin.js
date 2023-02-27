@@ -16,7 +16,7 @@ export default class EditCourse extends Component {
   }
   componentDidMount() {
     axios
-      .get('http://localhost:5000/course?id=' + this.props.match.params.id)
+      .get('https://pathpradarshak.netlify.app/course?id=' + this.props.match.params.id)
       .then((response) => {
         this.setState({ todos: response.data });
       })
@@ -63,7 +63,7 @@ export default class EditCourse extends Component {
       this.state.todos;
     console.log(this.state.todos);
     axios
-      .put('http://localhost:5000/course?id=' + this.state.todos._id, {
+      .put('https://pathpradarshak.netlify.app/course?id=' + this.state.todos._id, {
         courseName,
         courseDescription,
         category,

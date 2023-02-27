@@ -35,7 +35,7 @@ export default class CreateUser extends Component {
        
         
 
-            axios.get('http://localhost:5000/showroles/')
+            axios.get('https://pathpradarshak.netlify.app/showroles/')
             .then(response => {
                 this.setState({ Roles: response.data });
             })
@@ -100,7 +100,7 @@ export default class CreateUser extends Component {
             todo_completed: this.state.todo_completed
         };
 
-        axios.post('http://localhost:5000/user/', newTodo)
+        axios.post('https://pathpradarshak.netlify.app/user/', newTodo)
         .then((result) => {
             this.props.history.push("/allusers/")
           });

@@ -24,7 +24,7 @@ const Services = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/enrollmentbystudent?id=" + params.id)
+      .get("https://pathpradarshak.netlify.app/enrollmentbystudent?id=" + params.id)
       .then((result) => {
         console.log(result.data[0]);
         setData(result.data);

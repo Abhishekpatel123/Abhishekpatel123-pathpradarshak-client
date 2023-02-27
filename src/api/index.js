@@ -11,7 +11,7 @@ import axiosInstance from './instance';
 //Login - Get user token , //loginUser action creator
 export const loginUser = (userData, dispatch, history) => {
   axios
-    .post('http://localhost:5000/users/login', userData)
+    .post('https://pathpradarshak.netlify.app/users/login', userData)
     .then((res) => {
       //save token to local storage
       const { token } = res.data;
@@ -55,59 +55,59 @@ export const logoutUserApi = () => (dispatch) => {
 const ServerService = {
   updateUser: (data, id) => {
     console.log(data, id);
-    return axiosInstance().put(`http://localhost:5000/user?id=${id}`, data);
+    return axiosInstance().put(`/user?id=${id}`, data);
   },
   readUserData: () => {
-    return axiosInstance().get(`http://localhost:5000/user`);
+    return axiosInstance().get(`/user`);
   },
   deleteUser: (id) => {
-    return axiosInstance().delete(`http://localhost:5000/user?id=${id}`);
+    return axiosInstance().delete(`/user?id=${id}`);
   },
   contactUs: (data) => {
-    return axiosInstance().post(`http://localhost:5000/contact-us`, data);
+    return axiosInstance().post(`/contact-us`, data);
   },
   changePassword: (data) => {
     return axiosInstance().post(
-      `http://localhost:5000/users/change-password`,
+      `/users/change-password`,
       data
     );
   },
   changePassword2: (data) => {
     return axiosInstance().post(
-      `http://localhost:5000/users/change-password2`,
+      `/users/change-password2`,
       data
     );
   },
   forgotPassword: (data) => {
     return axiosInstance().post(
-      `http://localhost:5000/users/forgot-password`,
+      `/users/forgot-password`,
       data
     );
   },
 
   verifyEmail: (data) => {
-    return axiosInstance().post(`http://localhost:5000/verifying-email`, data);
+    return axiosInstance().post(`/verifying-email`, data);
   },
   registerUser: (data) => {
-    return axiosInstance().post('http://localhost:5000/users/register', data);
+    return axiosInstance().post('/users/register', data);
   },
   loginUser: (data) => {
-    return axiosInstance().post('http://localhost:5000/users/login', data);
+    return axiosInstance().post('/users/login', data);
   },
   courseBYInstructor: () => {
-    return axiosInstance().get('http://localhost:5000/coursebyinstructor');
+    return axiosInstance().get('/coursebyinstructor');
   },
   addCourse: (data) => {
-    return axiosInstance().post('http://localhost:5000/course/add', data);
+    return axiosInstance().post('/course/add', data);
   },
   addLecture: (data) => {
     return axiosInstance().post(
-      'http://localhost:5000/lectures/localupload',
+      '/lectures/localupload',
       data
     );
   },
   getCourses: (query = '') => {
-    return axiosInstance().get(`http://localhost:5000/courses?query=${query}`);
+    return axiosInstance().get(`/courses?query=${query}`);
   },
   getCategories: () => {
     return axiosInstance().get(`/categories`);

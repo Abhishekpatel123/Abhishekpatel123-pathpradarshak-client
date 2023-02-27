@@ -109,13 +109,7 @@ export default function AddLecture() {
         }
         const data = { course, title, videoLink, material, duration };
         console.log(data, "data");
-        // return;
         await ServerService.addLecture(data);
-        // await axios.post("http://localhost:5000/lectures/localupload", data, {
-        //   onUploadProgress: (ProgressEvent) => {
-        //     setUploading((ProgressEvent.loaded / ProgressEvent.total) * 100);
-        //   },
-        // });
         dispatch(
           setSnackbar({
             open: true,

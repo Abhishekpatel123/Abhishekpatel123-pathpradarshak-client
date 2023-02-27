@@ -17,7 +17,7 @@ class Dashboard extends Component {
         };
     }
 	getCoursedata(){
-		axios.get('http://localhost:5000/courses/')
+		axios.get('https://pathpradarshak.netlify.app/courses/')
             .then(response => {
 				
 				var dict={};
@@ -67,7 +67,7 @@ class Dashboard extends Component {
 	}
 
 	getEnrollmentdata(){
-		axios.get('http://localhost:5000/enrollments/')
+		axios.get('https://pathpradarshak.netlify.app/enrollments/')
             .then(response => {
 				
 				var dict={};
