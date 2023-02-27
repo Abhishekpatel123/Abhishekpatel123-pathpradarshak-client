@@ -4,7 +4,6 @@ import jwt_decode from 'jwt-decode';
 import { logout, setAuth } from '../store/features/authSlice';
 import catchError from '../utils/catchError';
 import axiosInstance from './instance';
-// import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 // import axiosInstance from "./instance";
 //registerUser action creator takes data and dispatch action to reducer along with payload
 
