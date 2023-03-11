@@ -209,7 +209,7 @@ const AddCourse = () => {
                   checked={checked}
                   onChange={handleChange}
                   {...label}
-                  defaultChecked
+                  // defaultChecked
                   color='primary'
                 />
                 <Typography sx={{ mr: 3 }} variant='h6'>

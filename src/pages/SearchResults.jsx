@@ -135,121 +135,6 @@ function SearchResults(props) {
             ))}
           </TextField>
           <Divider />
-
-          <ListItemButton onClick={handleClick}>
-            {/* <ListItemIcon>
-            <Inbox />
-          </ListItemIcon> */}
-            <ListItemText primary='Topic' />
-            {openTopic ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openTopic} timeout='auto' unmountOnExit>
-            <List
-              sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-            >
-              {categoryList.map((item) => {
-                const labelId = `checkbox-list-label-${item.categoryName}`;
-
-                return (
-                  <ListItem
-                    key={labelId}
-                    secondaryAction={<Typography>(299)</Typography>}
-                    disablePadding
-                  >
-                    <ListItemButton>
-                      <ListItemIcon>
-                        <Checkbox
-                          edge='start'
-                          //   checked={checked.indexOf(value) !== -1}
-                          //   tabIndex={-1}
-                          disableRipple
-                          // inputProps={{ "aria-labelledby": labelId }}
-                        />
-                      </ListItemIcon>
-                      <Typography variant='body2'>
-                        {item.categoryName}
-                      </Typography>{' '}
-                    </ListItemButton>
-                    {/* <ListItemButton
-                    role={undefined}
-                    onClick={handleToggle(value)}
-                    dense
-                  >
-                    <ListItemIcon>
-                      <Checkbox
-                        edge="start"
-                        checked={checked.indexOf(value) !== -1}
-                        tabIndex={-1}
-                        disableRipple
-                        inputProps={{ "aria-labelledby": labelId }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText
-                      id={labelId}
-                      primary={`Line item ${value + 1}`}
-                    />
-                  </ListItemButton> */}
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Collapse>
-          <Divider />
-
-          <ListItemButton onClick={handleClick}>
-            <ListItemText primary='Level' />
-            {openTopic ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openTopic} timeout='auto' unmountOnExit>
-            <List
-              sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-            >
-              {levelItems.map((item) => {
-                const labelId = `checkbox-list-label-${item.label}`;
-
-                return (
-                  <ListItem
-                    key={item.label}
-                    secondaryAction={<Typography>(299)</Typography>}
-                    disablePadding
-                  >
-                    <ListItemButton>
-                      <ListItemIcon>
-                        <Checkbox
-                          edge='start'
-                          //   checked={checked.indexOf(value) !== -1}
-                          //   tabIndex={-1}
-                          disableRipple
-                          // inputProps={{ "aria-labelledby": labelId }}
-                        />
-                      </ListItemIcon>
-                      <Typography>{item.label}</Typography>{' '}
-                    </ListItemButton>
-                    {/* <ListItemButton
-                    role={undefined}
-                    onClick={handleToggle(value)}
-                    dense
-                  >
-                    <ListItemIcon>
-                      <Checkbox
-                        edge="start"
-                        checked={checked.indexOf(value) !== -1}
-                        tabIndex={-1}
-                        disableRipple
-                        inputProps={{ "aria-labelledby": labelId }}
-                      />
-                    </ListItemIcon>
-                    <ListItemText
-                      id={labelId}
-                      primary={`Line item ${value + 1}`}
-                    />
-                  </ListItemButton> */}
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Collapse>
-          <Divider />
         </Stack>
         {/* - Courses */}
         <Container sx={{ mt: 1 }}>
@@ -279,3 +164,118 @@ function SearchResults(props) {
 }
 
 export default SearchResults;
+
+// <ListItemButton onClick={handleClick}>
+//   {/* <ListItemIcon>
+//   <Inbox />
+// </ListItemIcon> */}
+//   <ListItemText primary='Topic' />
+//   {openTopic ? <ExpandLess /> : <ExpandMore />}
+// </ListItemButton>
+// <Collapse in={openTopic} timeout='auto' unmountOnExit>
+//   <List
+//     sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+//   >
+//     {categoryList.map((item) => {
+//       const labelId = `checkbox-list-label-${item.categoryName}`;
+
+//       return (
+//         <ListItem
+//           key={labelId}
+//           secondaryAction={<Typography>(299)</Typography>}
+//           disablePadding
+//         >
+//           <ListItemButton>
+//             <ListItemIcon>
+//               <Checkbox
+//                 edge='start'
+//                 //   checked={checked.indexOf(value) !== -1}
+//                 //   tabIndex={-1}
+//                 disableRipple
+//                 // inputProps={{ "aria-labelledby": labelId }}
+//               />
+//             </ListItemIcon>
+//             <Typography variant='body2'>
+//               {item.categoryName}
+//             </Typography>{' '}
+//           </ListItemButton>
+//           {/* <ListItemButton
+//           role={undefined}
+//           onClick={handleToggle(value)}
+//           dense
+//         >
+//           <ListItemIcon>
+//             <Checkbox
+//               edge="start"
+//               checked={checked.indexOf(value) !== -1}
+//               tabIndex={-1}
+//               disableRipple
+//               inputProps={{ "aria-labelledby": labelId }}
+//             />
+//           </ListItemIcon>
+//           <ListItemText
+//             id={labelId}
+//             primary={`Line item ${value + 1}`}
+//           />
+//         </ListItemButton> */}
+//         </ListItem>
+//       );
+//     })}
+//   </List>
+// </Collapse>
+// <Divider />
+
+// <ListItemButton onClick={handleClick}>
+//   <ListItemText primary='Level' />
+//   {openTopic ? <ExpandLess /> : <ExpandMore />}
+// </ListItemButton>
+// <Collapse in={openTopic} timeout='auto' unmountOnExit>
+//   <List
+//     sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+//   >
+//     {levelItems.map((item) => {
+//       const labelId = `checkbox-list-label-${item.label}`;
+
+//       return (
+//         <ListItem
+//           key={item.label}
+//           secondaryAction={<Typography>(299)</Typography>}
+//           disablePadding
+//         >
+//           <ListItemButton>
+//             <ListItemIcon>
+//               <Checkbox
+//                 edge='start'
+//                 //   checked={checked.indexOf(value) !== -1}
+//                 //   tabIndex={-1}
+//                 disableRipple
+//                 // inputProps={{ "aria-labelledby": labelId }}
+//               />
+//             </ListItemIcon>
+//             <Typography>{item.label}</Typography>{' '}
+//           </ListItemButton>
+//           {/* <ListItemButton
+//           role={undefined}
+//           onClick={handleToggle(value)}
+//           dense
+//         >
+//           <ListItemIcon>
+//             <Checkbox
+//               edge="start"
+//               checked={checked.indexOf(value) !== -1}
+//               tabIndex={-1}
+//               disableRipple
+//               inputProps={{ "aria-labelledby": labelId }}
+//             />
+//           </ListItemIcon>
+//           <ListItemText
+//             id={labelId}
+//             primary={`Line item ${value + 1}`}
+//           />
+//         </ListItemButton> */}
+//         </ListItem>
+//       );
+//     })}
+//   </List>
+// </Collapse>
+// <Divider />

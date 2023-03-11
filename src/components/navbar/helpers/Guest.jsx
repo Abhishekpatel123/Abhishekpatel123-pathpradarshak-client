@@ -76,7 +76,7 @@ const Guest = ({ handleCloseNavMenu }) => {
           </NavLink>
         ))} */}
       </Box>
-      <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+      <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
         <AccountPopover isLogin={false} pages={pages} />
       </Box>
     </>

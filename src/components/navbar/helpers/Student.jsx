@@ -17,19 +17,19 @@ const Student = ({ handleCloseNavMenu }) => {
   const { user } = useSelector((state) => state.auth);
   const pages = [
     { label: "ABOUT", icon: InfoIcon, linkTo: "/about-us" },
-    {
-      label: " MY COURSES",
-      icon: homeFill,
-      linkTo: "/servicesforstudent/" + user.id,
-    },
     { label: "ALL COURSES", icon: ALL, linkTo: "/services" },
   ];
 
   const largeDeviceDropdownLink = [
     {
-      label: "Profile",
+      label: 'Profile',
       icon: personFill,
-      linkTo: "/edit-profile",
+      linkTo: '/edit-profile',
+    },
+    {
+      label: ' MY COURSES',
+      icon: homeFill,
+      linkTo: '/servicesforstudent/' + user.id,
     },
   ];
 
