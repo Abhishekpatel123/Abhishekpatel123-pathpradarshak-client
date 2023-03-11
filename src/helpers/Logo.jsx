@@ -12,12 +12,12 @@ const Logo = ({ type = 'desktop' }) => {
   return (
     <Box
       onClick={handleClick}
-      sx={{
-        display:
-          type === 'mobile'
-            ? { xs: 'flex', md: 'none', alignItems: 'center' }
-            : { xs: 'none', md: 'flex', alignItems: 'center' },
-      }}
+      // sx={{
+      //   display:
+      //     type === 'mobile'
+      //       ? { xs: 'flex', md: 'none', alignItems: 'center' }
+      //       : { xs: 'none', md: 'flex', alignItems: 'center' },
+      // }}
     >
       <Typography
         variant='h4'

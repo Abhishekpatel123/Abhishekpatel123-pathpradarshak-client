@@ -64,17 +64,20 @@ const Home = () => {
 
   return (
     <div>
-      <Container
-        sx={{
-          bgcolor: theme.palette.primary.light,
-          py: 6,
-          mt: 4,
-          boxShadow: 1,
-          borderRadius: 2,
-        }}
-        // maxWidth='md'
-      >
-        <Grid container spacing={4} sx={{ px: 8, items: 'center' }}>
+      <Container maxWidth='lg'>
+        <Grid
+          container
+          // spacing={4}
+          sx={{
+            px: 8,
+            // items: 'center',
+            bgcolor: theme.palette.primary.light,
+            boxShadow: 1,
+            borderRadius: 2,
+            py: 6,
+            mt: 4,
+          }}
+        >
           <Grid item xs={12} md={6}>
             <Typography variant='h2'>
               Learn for the sake of your future!
@@ -82,7 +85,14 @@ const Home = () => {
             <Typography valiant='h6' my={4}>
               Learn new skills from the comfort of your home or anywhere anytime
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: 2,
+              }}
+            >
               <Button size='large' variant='contained'>
                 Get Started
               </Button>
@@ -91,30 +101,54 @@ const Home = () => {
               </Button>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} sx={{ mt: 4 }}>
             <img alt='edu' src={GirlEduSvg} />
           </Grid>
         </Grid>
       </Container>
       {/* What we offer */}
       <Container
-        sx={{ my: 8, display: 'flex', justifyContent: 'space-between' }}
+        sx={{
+          my: 8,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Wifi style={{ color: theme.palette.primary.main }} />
-          <Typography variant='h5'>Online Tutoring</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: "wrap", justifyContent: "center" }}>
+          <Wifi
+            style={{ color: theme.palette.primary.main }}
+            sx={{ fontSize: { xs: '16px', sm: '26px' } }}
+          />
+          <Typography sx={{ fontSize: { xs: '10px', sm: '16px' } }}>
+            Online Tutoring
+          </Typography>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <WatchLater style={{ color: theme.palette.primary.main }} />
-          <Typography variant='h5'>Lifetime Access</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: "wrap", justifyContent: "center" }}>
+          <WatchLater
+            style={{ color: theme.palette.primary.main }}
+            sx={{ fontSize: { xs: '16px', sm: '26px' } }}
+          />
+          <Typography sx={{ fontSize: { xs: '10px', sm: '16px' } }}>
+            Lifetime Access
+          </Typography>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Lightbulb style={{ color: theme.palette.primary.main }} />
-          <Typography variant='h5'>Active Learning</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: "wrap", justifyContent: "center" }}>
+          <Lightbulb
+            style={{ color: theme.palette.primary.main }}
+            sx={{ fontSize: { xs: '16px', sm: '26px' } }}
+          />
+          <Typography sx={{ fontSize: { xs: '10px', sm: '16px' } }}>
+            Active Learning
+          </Typography>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <LaptopChromebook style={{ color: theme.palette.primary.main }} />
-          <Typography variant='h5'>150k online courses</Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: "wrap", justifyContent: "center" }}>
+          <LaptopChromebook
+            style={{ color: theme.palette.primary.main }}
+            sx={{ fontSize: { xs: '16px', sm: '26px' } }}
+          />
+          <Typography sx={{ fontSize: { xs: '10px', sm: '16px' } }}>
+            150k online courses
+          </Typography>
         </Box>
       </Container>
       {/* Banner */}

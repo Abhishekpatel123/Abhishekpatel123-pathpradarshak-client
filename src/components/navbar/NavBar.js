@@ -25,6 +25,7 @@ import catchError from '../../utils/catchError';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@mui/styles';
 import ServerService from '../../api';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const useStyles = makeStyles((theme) => ({
   searchDiv: {
@@ -32,12 +33,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 40,
     padding: '8px 16px',
     display: 'flex',
-    alignItems: 'center',
     border: '2px transparent solid',
-    gap: 4,
-    marginLeft: '2rem',
-    maxWidth: '500px',
+    margin: '0 2rem',
+    // gap: 4,
+    // marginLeft: '2rem',
+    // maxWidth: '500px',
     flex: 1,
+    [theme.breakpoints.down('sm')]: { display: 'none' },
     '&:hover': {
       border: '2px red solid',
       backgroundColor: theme.palette.primary.light,
@@ -149,32 +151,37 @@ const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='fixed' sx={{ bgcolor: '#fff', boxShadow: '0' }}>
-        <Container maxWidth='lg'>
-          <Toolbar disableGutters>
-            <NavLink
-              to='/'
-              style={{ textDecoration: 'none', textTransform: 'uppercase' }}
-            >
-              <Logo />
-            </NavLink>
-            <TextField
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  history.push(`/courses/search?query=${e.target.value}`);
-                }
-              }}
-              variant='standard'
-              className={classes.searchDiv}
-              margin='normal'
-              InputProps={{
-                startAdornment: <SearchIcon color='primary' sx={{ mr: 1 }} />,
-                disableUnderline: true, // <== added this
-                type: 'search',
-              }}
-              placeholder='Search for anything...'
-              color='secondary'
-            />
-            {/* <Autocomplete
+        <Container maxWidth='lg' sx={{ border: 1 }}>
+          {true ? (
+            <Toolbar disableGutters>
+              <NavLink
+                to='/'
+                style={{
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
+                  flex: 1,
+                }}
+              >
+                <Logo />
+              </NavLink>
+              <TextField
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    history.push(`/courses/search?query=${e.target.value}`);
+                  }
+                }}
+                variant='standard'
+                className={classes.searchDiv}
+                margin='normal'
+                InputProps={{
+                  startAdornment: <SearchIcon color='primary' sx={{ mr: 1 }} />,
+                  disableUnderline: true, // <== added this
+                  type: 'search',
+                }}
+                placeholder='Search for anything...'
+                color='secondary'
+              />
+              {/* <Autocomplete
               id='free-solo-demo'
               freeSolo
               value={value}
@@ -211,13 +218,69 @@ const Navbar = () => {
                 />
               )}
             /> */}
-            <Box sx={{ flexGrow: 1 }} />
+              {/* <Box sx={{ flexGrow: 1 }} /> */}
 
-            {isAuthenticated ? authLinks : <Guest />}
-          </Toolbar>
+              {isAuthenticated ? authLinks : <Guest />}
+            </Toolbar>
+          ) : (
+            <MobileView />
+          )}
         </Container>
       </AppBar>
     </Box>
   );
 };
+
 export default Navbar;
+
+const MobileView = () => {
+  return (
+    <Toolbar disableGutters>
+      <MenuIcon fontSize='medium' color='secondary' sx={{ mr: 2 }} />
+      <NavLink
+        to='/'
+        style={{ textDecoration: 'none', textTransform: 'uppercase' }}
+      >
+        <Logo />
+      </NavLink>
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '80%',
+          height: '100vh',
+          bgcolor: 'white',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '2rem 1rem',
+        }}
+      >
+        <NavLink
+          style={{ textDecoration: 'none', marginBottom: '1rem' }}
+          to='/about-us'
+        >
+          About
+        </NavLink>
+        <NavLink
+          style={{ textDecoration: 'none', marginBottom: '1rem' }}
+          to='/services'
+        >
+          All Courses
+        </NavLink>
+        <NavLink
+          style={{ textDecoration: 'none', marginBottom: '1rem' }}
+          to='/about-us'
+        >
+          Teach on PP
+        </NavLink>
+        <NavLink
+          style={{ textDecoration: 'none', marginBottom: '1rem' }}
+          to='/login'
+        >
+          Login
+        </NavLink>
+      </Box>
+    </Toolbar>
+  );
+};

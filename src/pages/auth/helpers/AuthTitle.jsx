@@ -15,7 +15,7 @@ const AuthTitle = ({ title, role }) => {
           marginLeft: 5,
           textShadow: "1px 1px #333",
           textDecoration: "underline",
-          fontFamily: "Open Sans",
+          // fontFamily: "Open Sans",
         }}
       >
         {role}
