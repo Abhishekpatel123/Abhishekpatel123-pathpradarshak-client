@@ -18,14 +18,14 @@ const Instructor = ({ handleCloseNavMenu }) => {
   const { user } = useSelector((state) => state.auth);
   const pages = [
     { label: 'ABOUT', icon: About, linkTo: '/about-us' },
-    { label: 'ALL COURSES', icon: ALL, linkTo: '/services' },
+    { label: 'ALL COURSES', icon: ALL, linkTo: '/courses' },
   ];
 
   const largeDeviceDropdownLink = [
     {
       label: ' MY COURSES',
       icon: homeFill,
-      linkTo: '/my-services/' + user?.id,
+      linkTo: '/my-courses/' + user?.id,
     },
     {
       label: 'ADD COURSES',

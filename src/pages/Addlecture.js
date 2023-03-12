@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   Box,
   Container,
@@ -7,15 +7,15 @@ import {
   Stack,
   TextField,
   Typography,
-} from "@mui/material";
-import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { Form, FormikProvider, useFormik } from "formik";
-import { LoadingButton } from "@mui/lab";
-import catchError from "../utils/catchError";
-import { setSnackbar } from "../store/features/global";
-import ServerService from "../api";
-import CustomTextField from "../helpers/CustomTextField";
+} from '@mui/material';
+import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { Form, FormikProvider, useFormik } from 'formik';
+import { LoadingButton } from '@mui/lab';
+import catchError from '../utils/catchError';
+import { setSnackbar } from '../store/features/global';
+import ServerService from '../api';
+import CustomTextField from '../helpers/CustomTextField';
 
 // import { Progress } from "reactstrap";
 // import { ToastContainer, toast } from "react-toastify";
@@ -36,8 +36,8 @@ export default function AddLecture() {
   const [uploading, setUploading] = useState();
 
   const schema = Yup.object().shape({
-    title: Yup.string().required("Title is required"),
-    course: Yup.string().required("Course is required"),
+    title: Yup.string().required('Title is required'),
+    course: Yup.string().required('Course is required'),
     file: Yup.mixed(),
     material: Yup.mixed(),
     duration: Yup.object().shape({
@@ -45,20 +45,20 @@ export default function AddLecture() {
       minutes: Yup.number().min(0).max(60),
     }),
     videoLink: Yup.string()
-      .required("please choose any one out of two")
-      .when("file", (file) => {
+      .required('please choose any one out of two')
+      .when('file', (file) => {
         if (file?.name) return Yup.string();
-        else return Yup.string().required("please choose any one out of two");
+        else return Yup.string().required('please choose any one out of two');
       }),
   });
 
   const formik = useFormik({
     initialValues: {
-      title: "",
-      course: "",
+      title: '',
+      course: '',
       selectedFile: null,
-      videoLink: "",
-      file: "",
+      videoLink: '',
+      file: '',
       duration: {
         hours: 0,
         minutes: 30,
@@ -70,51 +70,57 @@ export default function AddLecture() {
       if (videoLink && file) {
         setSnackbar({
           open: true,
-          type: "success",
-          message: "Only add one field between file and video link",
+          type: 'success',
+          message: 'Only add one field between file and video link',
         });
         return;
       } else if (!videoLink && !file) {
         setSnackbar({
           open: true,
-          type: "warning",
-          message: "add One out of video link and file",
+          type: 'warning',
+          message: 'add One out of video link and file',
         });
         return;
       }
       try {
         if (file) {
-          const url = process.env.REACT_APP_CLOUD_URL + "/video/upload";
+          const url = process.env.REACT_APP_CLOUD_URL + '/video/upload';
           const videoForm = new FormData();
-          videoForm.append("file", file);
-          videoForm.append("upload_preset", "dqrzb8nr");
-          videoForm.append("resource_type", "video");
-          delete axios.defaults.headers.common["Authorization"];
+          videoForm.append('file', file);
+          videoForm.append(
+            'upload_preset',
+            process.env.REACT_APP_UPLOAD_PRESET
+          );
+          videoForm.append('resource_type', 'video');
+          delete axios.defaults.headers.common['Authorization'];
           const fileUploaded = await axios.post(url, videoForm, {
             withCredentials: false,
           });
           videoLink = fileUploaded.data.secure_url;
         }
         if (material) {
-          const url = process.env.REACT_APP_CLOUD_URL + "/raw/upload";
+          const url = process.env.REACT_APP_CLOUD_URL + '/raw/upload';
           const materialForm = new FormData();
-          materialForm.append("file", material);
-          materialForm.append("upload_preset", "dqrzb8nr");
-          materialForm.append("resource_type", "video");
-          delete axios.defaults.headers.common["Authorization"];
+          materialForm.append('file', material);
+          materialForm.append(
+            'upload_preset',
+            process.env.REACT_APP_UPLOAD_PRESET
+          );
+          materialForm.append('resource_type', 'video');
+          delete axios.defaults.headers.common['Authorization'];
           const materialUploaded = await axios.post(url, materialForm, {
             withCredentials: false,
           });
           material = materialUploaded.data.secure_url;
         }
         const data = { course, title, videoLink, material, duration };
-        console.log(data, "data");
+        console.log(data, 'data');
         await ServerService.addLecture(data);
         dispatch(
           setSnackbar({
             open: true,
-            type: "success",
-            message: "Successfully Added",
+            type: 'success',
+            message: 'Successfully Added',
           })
         );
       } catch (err) {
@@ -132,20 +138,21 @@ export default function AddLecture() {
     setFieldValue,
   } = formik;
 
+  console.log(errors, 'errors');
   return (
-    <div>
-      <Container maxWidth="sm">
-        <Typography sx={{ my: 4 }} variant="h4" color="primary">
+    <div style={{ paddingBottom: '2rem' }}>
+      <Container maxWidth='sm'>
+        <Typography sx={{ my: 4 }} variant='h4' color='primary'>
           Upload Video
         </Typography>
         <FormikProvider value={formik}>
-          <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+          <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
             <Stack spacing={3}>
               <TextField
-                id="outlined-select-currency"
+                id='outlined-select-currency'
                 select
-                label="Select course"
-                {...getFieldProps("course")}
+                label='Select course'
+                {...getFieldProps('course')}
                 error={Boolean(touched.course && errors.course)}
                 helperText={touched.course && errors.course}
               >
@@ -156,57 +163,58 @@ export default function AddLecture() {
                 ))}
               </TextField>
               <CustomTextField
-                label="Video Title"
-                error={Boolean(touched.course && errors.course)}
-                name="title"
-                type="text"
+                label='Video Title'
+                error={Boolean(errors.course)}
+                name='title'
+                type='text'
+                helperText={touched.title && errors.title}
               />
 
               <Box>
-                <Typography sx={{ mb: 0.5 }} variant="subtitle1">
-                  Add material{" "}
+                <Typography sx={{ mb: 0.5 }} variant='subtitle1'>
+                  Add material{' '}
                 </Typography>
 
                 <TextField
                   fullWidth
-                  type="file"
+                  type='file'
                   onChange={(event) => {
-                    setFieldValue("material", event.currentTarget.files[0]);
+                    setFieldValue('material', event.currentTarget.files[0]);
                   }}
                   error={Boolean(touched.material && errors.material)}
                   helperText={touched.material && errors.material}
                 />
               </Box>
               <Box>
-                <Typography sx={{ mb: 0.5 }} variant="subtitle1">
-                  Select video{" "}
+                <Typography sx={{ mb: 0.5 }} variant='subtitle1'>
+                  Select video{' '}
                 </Typography>
 
                 <TextField
                   fullWidth
-                  type="file"
+                  type='file'
                   onChange={(event) => {
-                    setFieldValue("file", event.currentTarget.files[0]);
+                    setFieldValue('file', event.currentTarget.files[0]);
                   }}
                   error={Boolean(touched.videoLink && errors.videoLink)}
                   helperText={touched.videoLink && errors.videoLink}
                 />
               </Box>
-              <Typography align="center" variant="h4">
+              <Typography align='center' variant='h4'>
                 OR
               </Typography>
               <CustomTextField
-                label="Add YouTube Video URL"
-                name="videoLink"
-                type="text"
+                label='Add YouTube Video URL'
+                name='videoLink'
+                type='text'
                 error={Boolean(touched.videoLink && errors.videoLink)}
               />
 
-              <Box sx={{ display: "flex", gap: "10px" }}>
+              <Box sx={{ display: 'flex', gap: '10px' }}>
                 <CustomTextField
-                  label="Hours"
-                  name="duration.hours"
-                  type="number"
+                  label='Hours'
+                  name='duration.hours'
+                  type='number'
                   max={24}
                   min={0}
                   error={Boolean(
@@ -214,9 +222,9 @@ export default function AddLecture() {
                   )}
                 />
                 <CustomTextField
-                  label="Minutes"
-                  name="duration.minutes"
-                  type="number"
+                  label='Minutes'
+                  name='duration.minutes'
+                  type='number'
                   error={Boolean(
                     touched?.duration?.minutes && errors?.duration?.minutes
                   )}
@@ -226,9 +234,9 @@ export default function AddLecture() {
               </Box>
               <LoadingButton
                 fullWidth
-                size="large"
-                type="submit"
-                variant="contained"
+                size='large'
+                type='submit'
+                variant='contained'
                 disabled={isSubmitting}
                 loading={isSubmitting}
               >

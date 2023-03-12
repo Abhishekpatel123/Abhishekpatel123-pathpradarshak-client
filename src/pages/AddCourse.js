@@ -63,7 +63,7 @@ const AddCourse = () => {
     onSubmit: async (values) => {
       const formData = new FormData();
       formData.append('file', values.thumbnail);
-      formData.append('upload_preset', 'dqrzb8nr');
+      formData.append('upload_preset', process.env.REACT_APP_UPLOAD_PRESET);
       const url = process.env.REACT_APP_CLOUD_URL + '/image/upload';
       try {
         delete axios.defaults.headers.common['Authorization'];

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import ReactPlayer from "react-player/lazy";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import ReactPlayer from 'react-player/lazy';
 import {
   Box,
   Container,
@@ -10,27 +10,27 @@ import {
   Button,
   Rating,
   Modal,
-} from "@mui/material";
-import axios from "axios";
-import useRazorpay, { RazorpayOptions } from "react-razorpay";
-import catchError from "../utils/catchError";
+} from '@mui/material';
+import axios from 'axios';
+import useRazorpay, { RazorpayOptions } from 'react-razorpay';
+import catchError from '../utils/catchError';
 
-import Footer from "../components/Footer";
-import VideoList from "./VideoList";
-import { setSnackbar } from "../store/features/global";
+import Footer from '../components/Footer';
+import VideoList from '../components/courseDetail/VideoList';
+import { setSnackbar } from '../store/features/global';
 // import VideoDetail from "./VideoDetail";
 // import MobileMenu from "../components/MobileMenu";
 // import BrandLogoSlider from "../components/BrandLogoSlider";
 // import { ToastContainer, toast } from "react-toastify";
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 500,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
@@ -46,10 +46,10 @@ const BlogDetailsLeftSidebar = () => {
   const [selectedLectureIndex, setSelectedLectureIndex] = useState(0);
   const [open, setOpen] = useState(false);
 
-  const [enrolled, setEnrolled] = useState("ADD TO COURSE LIST");
+  const [enrolled, setEnrolled] = useState('ADD TO COURSE LIST');
   const [addCourse, setAddCourse] = useState(false);
   const [rating, setRating] = useState(0);
-  const status = "loading";
+  const status = 'loading';
 
   useEffect(() => {
     const URL = `${process.env.REACT_APP_BACKEND_URL}/checkenrollment?studentId=${user.id}&&courseId=${params.id}`;
@@ -60,13 +60,13 @@ const BlogDetailsLeftSidebar = () => {
         setCourse(response2.data.course);
         if (response2.data.isUserEnrolled) {
           setRating(response2.data.isUserEnrolled.rating);
-          setEnrolled("ALREADY ENROLLED");
+          setEnrolled('ALREADY ENROLLED');
         }
       } catch (err) {
         catchError(err, dispatch);
       }
     };
-    if (user.role === "student") setAddCourse(true);
+    if (user.role === 'student') setAddCourse(true);
     callApis();
   }, [user]);
 
@@ -94,9 +94,9 @@ const BlogDetailsLeftSidebar = () => {
       key: process.env.REACT_APP_RAZORYPAY_KEY, // Enter the Key ID generated from the Dashboard
       amount: payment.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: payment.currency,
-      name: "Invision Learnovative",
-      description: "Learn every day with good mentors",
-      image: "https://example.com/your_logo",
+      name: 'Invision Learnovative',
+      description: 'Learn every day with good mentors',
+      image: 'https://example.com/your_logo',
       order_id: payment.id, //This is a sample Order ID. Pass the `id` obtained in the response of createOrder().
       handler: function (response) {
         enrollCourse(response);
@@ -107,15 +107,15 @@ const BlogDetailsLeftSidebar = () => {
       prefill: {
         name: course?.instructor?.first_name + course?.instructor?.last_name,
         email: course?.instructor?.email,
-        contact: "9999999999",
+        contact: '9999999999',
       },
-      notes: { address: "Razorpay Corporate Office" },
-      theme: { color: "#3399cc" },
+      notes: { address: 'Razorpay Corporate Office' },
+      theme: { color: '#3399cc' },
     };
     const rzp1 = new Razorpay(options);
-    rzp1.on("payment.failed", function (response) {
+    rzp1.on('payment.failed', function (response) {
       dispatch(
-        setSnackbar({ open: true, message: "Payment Failed", type: "error" })
+        setSnackbar({ open: true, message: 'Payment Failed', type: 'error' })
       );
       return setOpen(false);
     });
@@ -134,8 +134,8 @@ const BlogDetailsLeftSidebar = () => {
       dispatch(
         setSnackbar({
           open: true,
-          message: "Successfully enrolled!",
-          type: "success",
+          message: 'Successfully enrolled!',
+          type: 'success',
         })
       );
       setOpen(false);
@@ -157,13 +157,13 @@ const BlogDetailsLeftSidebar = () => {
 
     try {
       await axios.post(URL, data);
-      setEnrolled("ALREADY ENROLLED");
+      setEnrolled('ALREADY ENROLLED');
       setOpen(false);
       dispatch(
         setSnackbar({
           open: true,
-          message: "Successfully course enrolled",
-          type: "success",
+          message: 'Successfully course enrolled',
+          type: 'success',
         })
       );
       return setOpen(false);
@@ -189,14 +189,14 @@ const BlogDetailsLeftSidebar = () => {
   };
 
   const handleCourse = () => {
-    console.log(course, "user");
-    if (!course?.price || course?.price === "Free") handleFreeCourse();
+    console.log(course, 'user');
+    if (!course?.price || course?.price === 'Free') handleFreeCourse();
     else handlePaidCourse();
   };
   const onVideoSelect = (index) => setSelectedLectureIndex(index);
 
   const toSeconds = (time) => {
-    console.log(time, "time");
+    console.log(time, 'time');
     if (time?.hours > -1 && time?.minutes) {
       return time.hours * 60 * 60 + time.minutes * 60;
     } else {
@@ -211,38 +211,38 @@ const BlogDetailsLeftSidebar = () => {
       var totalSeconds = course?.duration?.map(toSeconds).reduce(sum);
       console.log(totalSeconds);
       if (totalSeconds === 0) {
-        return "No Duration";
+        return 'No Duration';
       }
-      return totalSeconds / (60 * 60) + "hours";
-    } else return "No Duration";
+      return totalSeconds / (60 * 60) + 'hours';
+    } else return 'No Duration';
   };
   return (
     <div>
       <Modal
         open={open}
         onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
       >
         <Box sx={style}>
           <Typography
             sx={{ mb: 2 }}
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
+            id='modal-modal-title'
+            variant='h6'
+            component='h2'
           >
             Are you sure you want to enroll in this course?
           </Typography>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             <Button
-              variant="outlined"
-              color="error"
+              variant='outlined'
+              color='error'
               sx={{ mr: 1 }}
               onClick={() => setOpen(false)}
             >
               No
             </Button>
-            <Button variant="outlined" color="success" onClick={handleCourse}>
+            <Button variant='outlined' color='success' onClick={handleCourse}>
               Yes
             </Button>
           </Box>
@@ -250,38 +250,45 @@ const BlogDetailsLeftSidebar = () => {
       </Modal>
       <Box
         sx={{
-          minHeight: "200px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#333",
+          minHeight: '200px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#333',
         }}
       >
-        <Typography variant="h1" sx={{ color: "#e1e1e1" }} align="center">
+        <Typography variant='h1' sx={{ color: '#e1e1e1' }} align='center'>
           Course Details
         </Typography>
       </Box>
 
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Grid container spacing={4}>
           <Grid item md={8} sx={{ my: 2 }}>
-            {lectures[selectedLectureIndex] && (
+            {lectures[selectedLectureIndex] &&
+            lectures[selectedLectureIndex]?.videoLink.includes('youtube') ? (
               <ReactPlayer
                 controls={true}
-                width="100%"
+                width='100%'
                 url={lectures[selectedLectureIndex]?.videoLink}
               />
+            ) : (
+              <iframe
+                style={{ width: '100%', minHeight: '80vh' }}
+                src={lectures[selectedLectureIndex]?.videoLink}
+                title='W3Schools Free Online Web Tutorials'
+              ></iframe>
             )}
             {/* parent */}
             <Box
-              sx={{ display: "flex", my: 2, justifyContent: "space-between" }}
+              sx={{ display: 'flex', my: 2, justifyContent: 'space-between' }}
             >
               {/* child */}
               <Box>
                 <Box>
                   <Box>
                     <h2>
-                      {" "}
+                      {' '}
                       {lectures.length > 0
                         ? lectures[selectedLectureIndex].title
                         : status}
@@ -291,7 +298,7 @@ const BlogDetailsLeftSidebar = () => {
                         download
                         href={lectures[selectedLectureIndex]?.material}
                       >
-                        Attachment{" "}
+                        Attachment{' '}
                       </a>
                     )}
                   </Box>
@@ -302,19 +309,24 @@ const BlogDetailsLeftSidebar = () => {
                       : status}
                   </p>
                 </Box>
-                {user.role === "student" && enrolled !== "ADD TO COURSE LIST" && (
-                  <>
-                    <Typography variant="h6">- Rate your instructor</Typography>
-                    <Rating
-                      name="simple-controlled"
-                      value={rating}
-                      onChange={handleRate}
-                    />
-                  </>
-                )}
+                {user.role === 'student' &&
+                  enrolled !== 'ADD TO COURSE LIST' && (
+                    <>
+                      <Typography variant='h6'>
+                        - Rate your instructor
+                      </Typography>
+                      <Rating
+                        name='simple-controlled'
+                        value={rating}
+                        onChange={handleRate}
+                      />
+                    </>
+                  )}
               </Box>
               {/* child */}
-              <Box>duration : {calculateDuration()}</Box>
+              <Box sx={{ whiteSpace: 'nowrap' }}>
+                duration : {calculateDuration()}
+              </Box>
             </Box>
           </Grid>
           <Grid item md={4} sx={{ mt: 2 }}>
@@ -327,11 +339,11 @@ const BlogDetailsLeftSidebar = () => {
           <Grid item md={8} sx={{ pb: 3 }}></Grid>
           <Grid item md={4} sx={{ pb: 3 }}>
             <Button
-              disabled={enrolled === "ADD TO COURSE LIST" ? false : true}
-              style={addCourse ? {} : { display: "none" }}
+              disabled={enrolled === 'ADD TO COURSE LIST' ? false : true}
+              style={addCourse ? {} : { display: 'none' }}
               onClick={() => setOpen(true)}
-              variant="outlined"
-              color="secondary"
+              variant='outlined'
+              color='secondary'
             >
               {enrolled}
             </Button>

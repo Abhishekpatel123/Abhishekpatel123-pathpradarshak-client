@@ -66,22 +66,13 @@ const ServerService = {
     return axiosInstance().post(`/contact-us`, data);
   },
   changePassword: (data) => {
-    return axiosInstance().post(
-      `/users/change-password`,
-      data
-    );
+    return axiosInstance().post(`/users/change-password`, data);
   },
   changePassword2: (data) => {
-    return axiosInstance().post(
-      `/users/change-password2`,
-      data
-    );
+    return axiosInstance().post(`/users/change-password2`, data);
   },
   forgotPassword: (data) => {
-    return axiosInstance().post(
-      `/users/forgot-password`,
-      data
-    );
+    return axiosInstance().post(`/users/forgot-password`, data);
   },
 
   verifyEmail: (data) => {
@@ -100,10 +91,7 @@ const ServerService = {
     return axiosInstance().post('/course/add', data);
   },
   addLecture: (data) => {
-    return axiosInstance().post(
-      '/lectures/localupload',
-      data
-    );
+    return axiosInstance().post('/lectures/localupload', data);
   },
   getCourses: (query = '') => {
     return axiosInstance().get(`/courses?query=${query}`);
@@ -113,6 +101,11 @@ const ServerService = {
   },
   searchCoursesByQuery: (query) => {
     return axiosInstance().get(`/courses/search?query=${query}`);
+  },
+  courseEnrolledByStudent: (id) => {
+    return axiosInstance().get(
+      `/enrollmentbystudent?id=${id}`
+    );
   },
 };
 

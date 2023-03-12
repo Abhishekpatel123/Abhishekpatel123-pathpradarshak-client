@@ -46,7 +46,7 @@ const CourseCardFull = ({ val }) => {
       <Card>
         <CardActionArea
           component={Link}
-          to={`/blog-details-left-sidebar/${val._id}`}
+          to={`course-detail/${val._id}`}
           className={classes.cardActionAreaStyle}
         >
           <CardMedia

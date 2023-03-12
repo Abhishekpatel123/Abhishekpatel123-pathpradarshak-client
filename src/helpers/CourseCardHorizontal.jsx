@@ -49,7 +49,7 @@ const CourseCardFullHorizontal = ({ val }) => {
       className={classes.root}
       onClick={() => {
         alert('c');
-        navigator(`/blog-details-left-sidebar/${val._id}`);
+        navigator(`/course-detail/${val._id}`);
       }}
     >
       <Box>

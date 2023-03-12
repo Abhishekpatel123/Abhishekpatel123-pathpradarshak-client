@@ -10,8 +10,8 @@ export const useStyles = makeStyles((theme) => ({
     marginRight: '1rem',
     // color: '#474642',
     color: '#333',
-    fontWeight: 700,
-    fontSize: '11px',
+    fontWeight: 400,
+    fontSize: '12px',
     letterSpacing: '0.9px',
     // fontFamily: 'Open Sans',
     '&:hover': {

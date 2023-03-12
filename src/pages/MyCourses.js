@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Footer from "../Footer";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 import { Grid, Typography, Container } from "@mui/material";
 import { useParams } from "react-router-dom";
-import CourseCard from "../../helpers/CourseCard";
-import CourseCardFull from "../../helpers/CourseCardFull";
-import ServerService from "../../api";
+import CourseCard from "../helpers/CourseCard";
+import CourseCardFull from "../helpers/CourseCardFull";
+import ServerService from "../api";
 // import MobileMenu from "../MobileMenu";
 // import BrandLogoSlider from "../BrandLogoSlider";
 

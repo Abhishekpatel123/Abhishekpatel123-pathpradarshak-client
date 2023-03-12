@@ -83,7 +83,7 @@ const Home = () => {
         </Grid>
       </Container>
       {/* -- What we offer */}
-      <Container
+      <Container maxWidth='lg'
         sx={{
           my: 8,
           display: 'flex',
@@ -161,7 +161,7 @@ const Home = () => {
       </Container>
 
       {/* -- Banner */}
-      <Container sx={{ paddingX: 0 }}>
+      <Container maxWidth='lg' sx={{ paddingX: 0 }}>
         <img
           alt='edu-banner'
           style={{ margin: 'auto' }}
@@ -190,9 +190,8 @@ const Home = () => {
       </Container>
 
       {/* -- Become a Teacher */}
-      <Container
+      <Container maxWidth='lg'
         sx={{
-          py: 6,
           mt: 4,
         }}
       >

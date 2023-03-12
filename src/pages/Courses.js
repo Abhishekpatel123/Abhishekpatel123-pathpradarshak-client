@@ -4,13 +4,13 @@ import { Container, Grid, Typography, Box } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import Footer from '../Footer';
-import CourseCardFull from '../../helpers/CourseCardFull';
+import Footer from '../components/Footer';
+import CourseCardFull from '../helpers/CourseCardFull';
 import SearchIcon from '@mui/icons-material/Search';
 
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import ServerService from '../../api';
+import ServerService from '../api';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

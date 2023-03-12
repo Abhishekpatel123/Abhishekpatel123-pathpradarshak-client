@@ -11,7 +11,7 @@ import AccountPopover from '../../../helpers/AccountPopover';
 
 const pages = [
   { label: 'About', icon: About, linkTo: '/about-us' },
-  { label: 'All Courses', icon: ALL, linkTo: '/services' },
+  { label: 'All Courses', icon: ALL, linkTo: '/courses' },
   {
     label: 'Teach on PP',
     icon: Login,
@@ -41,7 +41,7 @@ const Guest = ({ handleCloseNavMenu }) => {
         </NavLink>
         <NavLink
           onClick={handleCloseNavMenu}
-          to='/services'
+          to='/courses'
           className={`${classes.link} `}
           activeClassName={classes.activeLink}
         >
